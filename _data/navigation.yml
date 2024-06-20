@@ -1,0 +1,6 @@
+main:
+  - title: "CV"
+    url: /assets/docs/Mingyang Wei_Resume.pdf
+    description: "View my resume"
+  - title: "External Link"
+    url: https://google.com
