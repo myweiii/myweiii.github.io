@@ -18,14 +18,17 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Personal Website - Mingyang Wei
-subtitle: Personal Website
+locale: "en-US"
+title: "<span class='side-font'>Homepage</span>"
+title_separator: "|"
+#subtitle: ""
 name: Mingyang Wei
 email: mingyang.wei@emory.edu
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+#description: >- # this means to ignore newlines until "baseurl:"
+#  Write an awesome description for your new site here. You can edit this
+#  line in _config.yml. It will appear in your document head meta (for
+#  Google search results) and in your feed.xml site description.
+description: "This is a wonderful personal website for Mingyang Wei."
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://myweiii.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  myweiii#
@@ -41,9 +44,22 @@ plugins:
 
 #teaser: /assets/images/favicon.ico
 #logo: "/assets/images/favicon.ico"
-masthead_title: "Mingyang Wei"
+logo: "/assets/images/logo.png"
+#masthead_title: 
 #breadcrumbs: true
 #permalink: /test1/title/
+
+include: 
+  - _pages
+  - _news
+
+collections:
+  pages:
+    output: true
+    permalink: /:collection/:path
+
+
+permalink: /:categories/:title/
 
 defaults:
   # _posts
@@ -51,7 +67,41 @@ defaults:
       path: ""
       type: posts
     values:
-      show_date: true
+      layout: single
+      show_date: false
+      author_profile: true
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      show_date: false
+      classes: wide
+
+  # news
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: single
+      author_profile: true
+      classes: wide
+
+  # _foo
+  - scope:
+      path: ""
+      type: foo
+    values:
+      layout: single
+      author_profile: true
+
+
+paginate: 5
+timezone: America/New_York
+enable_copy_code_button: true
 
 search: true
 lunr:
@@ -62,27 +112,31 @@ atom_feed:
 
 
 author:
-  name: "Mingyang Wei"
+  name: "<span class='side-font'>Mingyang Wei</span>"
   avatar: "/assets/images/Me.jpeg"
-  bio: "MSCS Student@Emory" # Note: Markdown is allowed
-  location: "Atlanta, GA, USA"
-  email: mingyang.wei@emory.edu
+  bio: "<span class='side-font'>MSCS Student@Emory</span>" # Note: Markdown is allowed
+  location: "<span class='side-font'>Atlanta, GA, USA</span>"
   links:
-    - label: " Linkedin"
-      icon: "fab fa-linkedin-in"
+    - label: "<span class='side-font'>Linkedin</span>"
+      icon: "fab fa-fw fa-linkedin-in"
       url: "https://www.linkedin.com/in/mingyangwei/"
-    - label: "GitHub"
+    - label: "<span class='side-font'>GitHub</span>"
       icon: "fab fa-fw fa-github-alt"
       url: "https://github.com/myweiii"
-    - label: "Instagram"
+    - label: "<span class='side-font'>Instagram</span>"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/mingyang.mywei"
+    - label: "<span class='side-font'>Email</span>"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:mingyang.wei@emory.edu"
     
 
 footer:
   links:
-    - label: "Emory University"
+    - label: "<span class='side-font'>Emory University</span>"
       url: "https://emory.edu"
+    - label: "<span class='side-font'>Emory Melody Lab</span>"
+      url: "https://github.com/Emory-Melody"
 
 
 

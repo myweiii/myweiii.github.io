@@ -1,6 +1,8 @@
 main:
-  - title: "CV11"
+  - title: "<span class='side-font'>News</span>"
+    url: /news/
+  - title: "<span class='side-font'>CV</span>"
     url: /assets/docs/Mingyang Wei_Resume.pdf
     description: "View my resume"
-  - title: "External Link"
+  - title: "<span class='side-font'>External Link</span>"
     url: https://google.com
