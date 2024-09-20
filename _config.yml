@@ -137,6 +137,8 @@ footer:
       url: "https://emory.edu"
     - label: "<span class='side-font'>Emory Melody Lab</span>"
       url: "https://github.com/Emory-Melody"
+    - label: "<span class='side-font'>Prof. Wei Jin's Homepage</span>"
+      url: "https://www.cs.emory.edu/~wjin30/"
 
 
 
