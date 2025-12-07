@@ -114,7 +114,7 @@ atom_feed:
 author:
   name: "<span class='side-font'>Mingyang Wei</span>"
   avatar: "/assets/images/Me.jpeg"
-  bio: "<span class='side-font'>RA@Emory; MS@Emory; BE@WHU</span>" # Note: Markdown is allowed
+  bio: "<span class='side-font'>RA@Emory<br>MS@Emory; BE@WHU</span>" # Note: Markdown is allowed
   location: "<span class='side-font'>Atlanta, GA, USA</span>"
   links:
     - label: "<span class='side-font'>Linkedin</span>"
