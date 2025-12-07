@@ -6,9 +6,9 @@ author_profile: true
 
 
 
-<p class="body-font">
+<span class="body-font">
 Hi there👋! My name is Mingyang Wei and I am currently a research assistant at Emory University, advised by [Dr. Wei Jin](https://www.cs.emory.edu/~wjin30/). My research mainly sits at the intersection of Graph Learning and LLMs, with a particular focus on their applications in epidemiology. Additionally, I work closely with [Dr. Carl Yang](https://www.cs.emory.edu/~jyang71/) on hypergraph analysis. I received my M.S. in Computer Science from Emory University in 2025, and my B.E. in Information Security from Wuhan University.
-</p>
+</span>
 
 
 
