@@ -2,7 +2,5 @@ main:
   - title: "<span class='side-font'>News</span>"
     url: /news/
   - title: "<span class='side-font'>CV</span>"
-    url: /assets/docs/Mingyang Wei_Resume.pdf
+    url: /assets/docs/CV_MingyangWei.pdf
     description: "View my resume"
-  - title: "<span class='side-font'>External Link</span>"
-    url: https://google.com
