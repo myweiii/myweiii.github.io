@@ -10,24 +10,30 @@ author_profile: true
 Hi there👋! My name is Mingyang Wei and I am currently a research assistant at Emory University, advised by [Dr. Wei Jin](https://www.cs.emory.edu/~wjin30/). My research mainly sits at the intersection of Graph Learning and LLMs, with a particular focus on their applications in epidemiology. Additionally, I work closely with [Dr. Carl Yang](https://www.cs.emory.edu/~jyang71/) on hypergraph analysis. I received my M.S. in Computer Science from Emory University in 2025, and my B.E. in Information Security from Wuhan University.
 </span>
 
-
 <h2 class="title-font">Open Source Projects</h2>
-<img src="../assets/images/epilearn_logo.png" alt="EpiLearn">
+
 <table style="border: none; border-collapse: collapse;">
   <tr style="border: none;">
+    <td style="border: none; padding: 10px; vertical-align: middle;">
+      <a href="https://github.com/Emory-Melody/EpiLearn">
+        <img src="../assets/images/epilearn_logo.png" alt="EpiLearn" width="300">
+      </a>
+    </td>
     <td style="border: none; padding: 10px;">
       <a href="https://github.com/Emory-Melody/EpiLearn">
         <b>EpiLearn: A Python library for machine learning in epidemic modeling</b> 
       </a>
+      <br>
       <img src="https://img.shields.io/github/stars/Emory-Melody/EpiLearn?style=social" alt="GitHub stars">
       <img src="https://img.shields.io/github/forks/Emory-Melody/EpiLearn?style=social" alt="GitHub forks">
       <br>
       <a href="https://github.com/Emory-Melody/EpiLearn">Github</a> | 
       <a href="https://arxiv.org/abs/2406.06016">Paper</a> | 
       <a href="https://epilearn.readthedocs.io/">Documentation</a>
-      <td>
+    </td>
   </tr>
 </table>
+
 
 
 
