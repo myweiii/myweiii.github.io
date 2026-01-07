@@ -11,25 +11,24 @@ Hi there👋! My name is Mingyang Wei and I am currently a research assistant at
 </span>
 
 <h2 class="title-font">Open Source Projects</h2>
-
 <table style="border: none; border-collapse: collapse;">
   <tr style="border: none;">
     <td style="border: none; padding: 10px; vertical-align: middle;">
-      <a href="https://github.com/Emory-Melody/EpiLearn">
-        <img src="../assets/images/epilearn_logo.png" alt="EpiLearn" width="300">
+      <a href="https://github.com/Emory-Melody/EpiLearn" target="_blank">
+        <img src="../assets/images/epilearn_logo.png" alt="EpiLearn" width="200">
       </a>
     </td>
     <td style="border: none; padding: 10px;">
-      <a href="https://github.com/Emory-Melody/EpiLearn">
-        <b>EpiLearn: A Python library for machine learning in epidemic modeling</b> 
+      <a href="https://github.com/Emory-Melody/EpiLearn" target="_blank">
+        <b class="body-font">EpiLearn: A Python library for machine learning in epidemic modeling</b> 
       </a>
       <br>
-      <img src="https://img.shields.io/github/stars/Emory-Melody/EpiLearn?style=social" alt="GitHub stars">
-      <img src="https://img.shields.io/github/forks/Emory-Melody/EpiLearn?style=social" alt="GitHub forks">
+      <img src="https://img.shields.io/github/stars/Emory-Melody/EpiLearn?style=social" target="_blank" alt="GitHub stars">
+      <img src="https://img.shields.io/github/forks/Emory-Melody/EpiLearn?style=social" target="_blank" alt="GitHub forks">
       <br>
-      <a href="https://github.com/Emory-Melody/EpiLearn">Github</a> | 
-      <a href="https://arxiv.org/abs/2406.06016">Paper</a> | 
-      <a href="https://epilearn.readthedocs.io/">Documentation</a>
+      <a href="https://github.com/Emory-Melody/EpiLearn" target="_blank" class="news-font">Github</a> | 
+      <a href="https://arxiv.org/abs/2406.06016" target="_blank" class="title-font">Paper</a> | 
+      <a href="https://epilearn.readthedocs.io/" target="_blank" class="body-font">Documentation</a>
     </td>
   </tr>
 </table>
