@@ -23,7 +23,7 @@ Hi there👋! My name is Mingyang Wei and I am currently a research assistant at
         <b class="body-font">EpiLearn: A Python library for machine learning in epidemic modeling</b> 
       </a>
       <br>
-      <a class="title-font"> In KDD epiDAMIK 2024 <a>
+      <span class="title-font"> In KDD epiDAMIK 2024 </span>
       <img src="https://img.shields.io/github/stars/Emory-Melody/EpiLearn?style=social" target="_blank" alt="GitHub stars">
       <img src="https://img.shields.io/github/forks/Emory-Melody/EpiLearn?style=social" target="_blank" alt="GitHub forks">
       <br>
