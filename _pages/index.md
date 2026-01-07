@@ -24,8 +24,8 @@ Hi there👋! My name is Mingyang Wei and I am currently a research assistant at
       </a>
       <br>
       <span class="title-font"> In KDD epiDAMIK 2024 </span>
-      <img src="https://img.shields.io/github/stars/Emory-Melody/EpiLearn?style=social" target="_blank" alt="GitHub stars">
-      <img src="https://img.shields.io/github/forks/Emory-Melody/EpiLearn?style=social" target="_blank" alt="GitHub forks">
+      <img src="https://img.shields.io/github/stars/Emory-Melody/EpiLearn?style=social" alt="GitHub stars">
+      <img src="https://img.shields.io/github/forks/Emory-Melody/EpiLearn?style=social" alt="GitHub forks">
       <br>
       <a href="https://github.com/Emory-Melody/EpiLearn" target="_blank" class="news-font">Github</a> | 
       <a href="https://arxiv.org/abs/2406.06016" target="_blank" class="news-font">Paper</a> | 
