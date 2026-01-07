@@ -7,7 +7,7 @@ author_profile: true
 
 
 <span class="body-font">
-Hi there👋! My name is Mingyang Wei and I am currently a research assistant at Emory University, advised by [Dr. Wei Jin](https://www.cs.emory.edu/~wjin30/){:target="_blank"}. My research mainly sits at the intersection of Graph Learning and LLMs, with a particular focus on their applications in epidemiology. Additionally, I work closely with [Dr. Carl Yang](https://www.cs.emory.edu/~jyang71/) on hypergraph analysis. I received my M.S. in Computer Science from Emory University in 2025, and my B.E. in Information Security from Wuhan University.
+Hi there👋! My name is Mingyang Wei and I'm currently a research assistant at Emory University, advised by [Dr. Wei Jin](https://www.cs.emory.edu/~wjin30/){:target="_blank"}. My research focuses on trustworthy AI for scientific applications. I also work closely with [Dr. Carl Yang](https://www.cs.emory.edu/~jyang71/){:target="_blank"} on graph-based methods for clinical data. I received my M.S. in Computer Science from Emory University in 2025, and my B.E. in Information Security from Wuhan University.
 </span>
 
 <h2 class="title-font">Open-Source Projects</h2>
@@ -39,10 +39,10 @@ Hi there👋! My name is Mingyang Wei and I am currently a research assistant at
 
 
 <h2 class="title-font">News</h2>
-- <span class="news-font">2025-02: Our paper [Efficient Epidemic Intervention Generation: A Graph Adversarial Attack Perspective](https://dl.acm.org/doi/10.1145/3701716.3717363) has just been accepted to [WWW WebST '25](https://webst2025.netlify.app/)!</span>
-- <span class="news-font">2024-08: [EpiLearn: A Python Library for Machine Learning in Epidemic Modeling](https://arxiv.org/pdf/2406.06016) has been accepted to [KDD epiDAMIK '24](https://epidamik.github.io/)!</span>
-- <span class="news-font">[2024-07](/news/2024-07-01): Check out [EpiLearn](https://github.com/Emory-Melody/EpiLearn), the new Python package for epidemic modeling from [Emory Melody Lab](https://github.com/Emory-Melody)!</span>
+- <span class="news-font">2025-02: Our paper [Efficient Epidemic Intervention Generation: A Graph Adversarial Attack Perspective](https://dl.acm.org/doi/10.1145/3701716.3717363){:target="_blank"} has just been accepted to [WWW WebST '25](https://webst2025.netlify.app/){:target="_blank"}!</span>
+- <span class="news-font">2024-08: [EpiLearn: A Python Library for Machine Learning in Epidemic Modeling](https://arxiv.org/pdf/2406.06016){:target="_blank"} has been accepted to [KDD epiDAMIK '24](https://epidamik.github.io/){:target="_blank"}!</span>
+- <span class="news-font">[2024-07](/news/2024-07-01): Check out [EpiLearn](https://github.com/Emory-Melody/EpiLearn){:target="_blank"}, the new Python package for epidemic modeling from [Emory Melody Lab](https://github.com/Emory-Melody){:target="_blank"}!</span>
 - <span class="news-font">2024-06: Excited to launch my personal website!</span>
-- <span class="news-font">[2024-04](/news/2024-04-01): Our team earned a 🥉Bronze Medal in the [Kaggle Competition: Harvard Medical School Harmful Brain Activity Classification](https://www.kaggle.com/competitions/hms-harmful-brain-activity-classification)!</span>
+- <span class="news-font">[2024-04](/news/2024-04-01): Our team earned a 🥉Bronze Medal in the [Kaggle Competition: Harvard Medical School Harmful Brain Activity Classification](https://www.kaggle.com/competitions/hms-harmful-brain-activity-classification){:target="_blank"}!</span>
 
 <span class="time-font">[View More](/news/)</span>
