@@ -133,11 +133,12 @@ author:
 
 footer:
   links:
+    - label: "<span class='side-font'>Wuhan University</span>"
+      url: "https://www.whu.edu.cn/"
     - label: "<span class='side-font'>Emory University</span>"
-      url: "https://emory.edu"
+      url: "https://www.emory.edu"
     - label: "<span class='side-font'>Emory Melody Lab</span>"
       url: "https://github.com/Emory-Melody"
-      target: "_blank"
 
 
 
