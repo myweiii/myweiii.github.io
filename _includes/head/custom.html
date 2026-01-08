@@ -6,12 +6,10 @@
 <style>
     .body-font {
         font-family: Sinhala MN, Optima, Arial, sans-serif;
-        font-size: 19px;
     }
 
     .news-font {
         font-family: Sinhala MN, Optima, Arial, sans-serif;
-        font-size: 18px;
     }
 
     .title-font {
@@ -19,12 +17,605 @@
     }
 
     .side-font {
-        font-family: Heiti SC, Optima, Arial, sans-serif;
+        font-family: Skia, Optima, Arial, sans-serif;
     }
 
     .time-font {
-        font-size: 15px;
         font-family: Sinhala MN, Optima, Arial, sans-serif;
     }
+
+    .page__meta,
+    .page__date {
+        display: none !important;
+    }
+
+    .site-logo, .site-title {
+    margin-right: 30px !important;
+    }
+
+    .site-title {
+    display: none !important;
+    } 
+
+    .author__name {
+    font-weight: 600 !important;
+    }
+
+    /* 导航栏固定在顶部 */
+    /* 导航栏固定 */
+.masthead {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #f3f6f6;
+}
+
+body.dark-mode .masthead {
+    background-color: #16213e;
+}
+
+/* 侧边栏停在导航栏下方 */
+.sidebar.sticky {
+    top: 70px !important; /* 导航栏高度 + 一点间距 */
+}
+
+/* 锚点跳转时预留导航栏空间 */
+#open-source-projects,
+#latest-news,
+#fun-facts,
+#visitors {
+    padding-top: 80px;
+    margin-top: -60px;
+}
+
+    #about, #news {
+        padding-top: 80px;
+        border-bottom: none !important;
+        margin-top: -20px;
+        margin-bottom: -10px !important;
+        }
+
+
+    body.dark-mode {
+        background-color: #1a1a2e;
+        color: #eaeaea;
+    }
+
+    body.dark-mode .masthead {
+        background-color: #16213e;
+    }
+
+    body.dark-mode .page__content {
+        background-color: #1a1a2e;
+    }
+
+    body.dark-mode a {
+        color: #4fc3f7;
+    }
+
+    body.dark-mode .greedy-nav {
+        background-color: #16213e;
+    }
+
+    body.dark-mode .greedy-nav a {
+        color: #eaeaea;
+    }
+
+    body.dark-mode .page__footer {
+    background-color: #16213e;
+    color: #eaeaea;
+    }
+
+    body.dark-mode .invert-dark {
+    filter: invert(1);
+    }
+
+    body.dark-mode .site-logo img {
+        filter: invert(1);
+    }
+
+    body.dark-mode .author__urls i,
+    body.dark-mode .author__urls .fab,
+    body.dark-mode .author__urls .fas {
+        color: #eaeaea;
+    }
+
+    body.dark-mode .author__urls a {
+        color: #eaeaea;
+    }
+
+    body.dark-mode .author__bio {
+        color: #eaeaea;
+    }
+
+    body.dark-mode .author__name {
+        color: #eaeaea;
+    }
+
+    body.dark-mode .sidebar {
+        background-color: #1a1a2e;
+    }
+
+    .header-link {
+    display: none;
+    }
+
+    .page__title {
+    display: none;
+    }
+
+    .page__content {
+    margin-top: -50px;
+    }
+
+    .no-border {
+    border-bottom: none !important;
+    }
+
+    .greedy-nav .search__toggle {
+    display: none !important;
+    }
+
+
+
 </style>
 <!-- end custom head snippets -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('theme-toggle');
+
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.body.classList.toggle('dark-mode', systemDark);
+    btn.innerHTML = systemDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
+    btn.parentElement.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      btn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      document.body.classList.toggle('dark-mode', e.matches);
+      btn.innerHTML = e.matches ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 创建下拉菜单
+  const dropdown = document.createElement('div');
+  dropdown.id = 'custom-dropdown';
+  document.body.appendChild(dropdown);
+
+  // 固定的菜单项
+  const fixedItems = `
+    <div class="dropdown-section fixed-items">
+      <a href="/#about" class='side-font'>About</a>
+      <a href="/#open-source-projects" class='side-font'>Open-Source Projects</a>
+      <a href="/#latest-news" class='side-font'>Latest News</a>
+      <a href="/#fun-facts" class='side-font'>Fun Facts</a>
+      <a href="/#visitors" class='side-font'>Visitors</a>
+    </div>
+  `;
+
+  let pauseUpdate = false;
+
+  // 更新下拉菜单内容
+  function updateDropdown() {
+    if (pauseUpdate) return;
+    
+    const hiddenLinks = document.querySelector('.hidden-links');
+    let dynamicItems = '';
+    
+    if (hiddenLinks && hiddenLinks.children.length > 0) {
+      dynamicItems = '<div class="dropdown-section dynamic-items">';
+      Array.from(hiddenLinks.children).forEach(function(li) {
+        const link = li.querySelector('a');
+        if (link) {
+          dynamicItems += `<a href="${link.getAttribute('href')}" class="side-font">${link.innerHTML}</a>`;
+        }
+      });
+      dynamicItems += '</div>';
+    }
+    
+    if (dynamicItems) {
+      dropdown.innerHTML = dynamicItems + '<hr class="dropdown-divider">' + fixedItems;
+    } else {
+      dropdown.innerHTML = fixedItems;
+    }
+
+    // 重新绑定主题切换按钮事件
+    const themeToggleInDropdown = dropdown.querySelector('#theme-toggle');
+    if (themeToggleInDropdown) {
+      themeToggleInDropdown.closest('a').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        
+        document.querySelectorAll('#theme-toggle').forEach(function(btn) {
+          btn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+      });
+    }
+  }
+
+  // 初始化
+  updateDropdown();
+
+  // 监听 hidden-links 变化
+  const hiddenLinks = document.querySelector('.hidden-links');
+  if (hiddenLinks) {
+    const observer = new MutationObserver(updateDropdown);
+    observer.observe(hiddenLinks, { childList: true, subtree: true });
+  }
+
+  // 监听窗口大小变化
+  window.addEventListener('resize', updateDropdown);
+
+  // 把汉堡菜单插入到 greedy-nav
+const nav = document.querySelector('.greedy-nav');
+if (nav) {
+  const hamburger = document.createElement('span');
+  hamburger.id = 'hamburger-btn';
+  hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+  nav.appendChild(hamburger);
+  
+  hamburger.addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  
+  updateDropdown();
+  
+  const rect = hamburger.getBoundingClientRect();
+  const windowWidth = window.innerWidth;
+  
+  // 先显示以获取实际宽度
+  dropdown.style.position = 'fixed';
+  dropdown.style.visibility = 'hidden';
+  dropdown.style.display = 'block';
+  
+  const dropdownWidth = dropdown.offsetWidth;
+  
+  dropdown.style.top = rect.bottom + 10 + 'px';
+  
+  // 计算居中位置
+  const iconCenter = rect.left + rect.width / 2;
+  let dropdownLeft = iconCenter - dropdownWidth / 2;
+  
+  // 检查是否超出右边界
+  if (dropdownLeft + dropdownWidth > windowWidth - 10) {
+    dropdown.style.right = '10px';
+    dropdown.style.left = 'unset';
+  } 
+  // 检查是否超出左边界
+  else if (dropdownLeft < 10) {
+    dropdown.style.left = '10px';
+    dropdown.style.right = 'unset';
+  } 
+  // 正常居中
+  else {
+    dropdown.style.left = dropdownLeft + 'px';
+    dropdown.style.right = 'unset';
+  }
+  
+  // 显示
+  dropdown.style.visibility = 'visible';
+});
+}
+
+  // 点击其他地方关闭
+  document.addEventListener('click', function(e) {
+    const hamburger = document.getElementById('hamburger-btn');
+    if (hamburger && !hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = 'none';
+    }
+  });
+
+  // 点击菜单项后关闭
+  dropdown.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      pauseUpdate = true;
+      setTimeout(function() {
+        dropdown.style.display = 'none';
+        pauseUpdate = false;
+      }, 100);
+    }
+  });
+});
+</script>
+
+<style>
+  /* 不再完全隐藏 hidden-links，只是视觉上隐藏 */
+  .greedy-nav__toggle {
+    display: none !important;
+  }
+  
+  .hidden-links {
+    visibility: hidden !important;
+    position: absolute !important;
+    pointer-events: none !important;
+  }
+
+    /* 我们的汉堡按钮 */
+    #hamburger-btn {
+    cursor: pointer;
+    padding: 0 15px;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    }
+
+    #hamburger-btn i {
+    font-size: 1.1em;
+    }
+
+  /* 下拉菜单 */
+  #custom-dropdown {
+    display: none;
+    position: fixed;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 9999;
+    min-width: 200px;
+  }
+  
+  #custom-dropdown a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  #custom-dropdown a:hover {
+    background: #f5f5f5;
+  }
+
+  .dropdown-divider {
+    margin: 5px 0;
+    border: none;
+    border-top: 1px solid #eee;
+  }
+
+  body.dark-mode .dropdown-divider {
+    border-top-color: #333;
+  }
+
+  body.dark-mode #custom-dropdown {
+    background: #16213e;
+  }
+  
+  body.dark-mode #custom-dropdown a {
+    color: #eaeaea;
+  }
+  
+  body.dark-mode #custom-dropdown a:hover {
+    background: #1a1a2e;
+  }
+
+  /* 手机端下拉菜单居中 */
+  @media (max-width: 768px) {
+    #custom-dropdown {
+      width: 90%;
+      left: 5% !important;
+      right: 5% !important;
+    }
+
+    #fun-facts + table tr {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #fun-facts + table td {
+        width: 100% !important;
+        display: block;
+        text-align: center;
+    }
+    
+    /* 列表保持左对齐 */
+    #fun-facts + table ul {
+        text-align: left;
+        display: inline-block;
+    }
+  }
+
+
+
+
+
+</style>
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 侧边栏链接
+  document.querySelectorAll('.author__urls a').forEach(function(link) {
+    const href = link.getAttribute('href');
+    if (href && (href.startsWith('http') || href.startsWith('mailto:'))) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+
+  // 页脚链接
+  document.querySelectorAll('.page__footer a').forEach(function(link) {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('http')) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  function updateSpotifyTheme() {
+    const isDark = document.body.classList.contains('dark-mode');
+    const theme = isDark ? '0' : '1';  // 0=深色, 1=浅色
+    
+    document.querySelectorAll('.spotify-embed').forEach(function(iframe) {
+      let src = iframe.src;
+      // 移除旧的 theme 参数
+      src = src.replace(/[?&]theme=\d/, '');
+      // 添加新的 theme 参数
+      if (src.includes('?')) {
+        src += '&theme=' + theme;
+      } else {
+        src += '?theme=' + theme;
+      }
+      iframe.src = src;
+    });
+  }
+
+  // 初始化
+  updateSpotifyTheme();
+
+  // 监听主题切换按钮
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.closest('a').addEventListener('click', function() {
+      setTimeout(updateSpotifyTheme, 100);
+    });
+  }
+
+  // 监听系统主题变化
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    setTimeout(updateSpotifyTheme, 100);
+  });
+});
+</script>
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E3W94CY71D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E3W94CY71D');
+</script>
+
+
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 浅色模式地图参数
+  const lightMap = "https://mapmyvisitors.com/map.js?cl=62dfcb&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb";
+  // 深色模式地图参数
+  const darkMap = "https://mapmyvisitors.com/map.js?cl=eaeaea&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=1a1a2e&cmo=4fc3f7&cmn=ffb347";
+
+  function loadMap() {
+    const container = document.getElementById('mapmyvisitors-container');
+    const isDark = document.body.classList.contains('dark-mode');
+    
+    // 清空容器
+    container.innerHTML = '';
+    
+    // 加载对应主题的地图
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.id = 'mapmyvisitors';
+    script.src = isDark ? darkMap : lightMap;
+    container.appendChild(script);
+  }
+
+  // 初始化加载
+  loadMap();
+
+  // 监听主题切换按钮
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.closest('a').addEventListener('click', function() {
+      setTimeout(loadMap, 100); // 延迟一点让主题切换完成
+    });
+  }
+
+  // 监听系统主题变化
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    setTimeout(loadMap, 100);
+  });
+});
+</script>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const lightMap = "https://mapmyvisitors.com/map.js?cl=62dfcb&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb";
+  const darkMap = "https://mapmyvisitors.com/map.js?cl=eaeaea&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=1a1a2e&cmo=4fc3f7&cmn=ffb347";
+
+  let resizeTimeout;
+
+  function loadMap() {
+    const container = document.getElementById('mapmyvisitors-container');
+    if (!container) return;
+    
+    const isDark = document.body.classList.contains('dark-mode');
+    
+    container.innerHTML = '';
+    
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.id = 'mapmyvisitors';
+    script.src = isDark ? darkMap : lightMap;
+    container.appendChild(script);
+  }
+
+  loadMap();
+
+  // 用事件委托处理地图链接点击
+  document.getElementById('mapmyvisitors-container').addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link) {
+      e.preventDefault();
+      window.open(link.href, '_blank', 'noopener,noreferrer');
+    }
+  });
+
+  // 窗口大小变化时重新加载（防抖）
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(loadMap, 500);
+  });
+
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.closest('a').addEventListener('click', function() {
+      setTimeout(loadMap, 100);
+    });
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    setTimeout(loadMap, 100);
+  });
+});
+</script>

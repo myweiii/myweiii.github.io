@@ -35,7 +35,7 @@ source "https://rubygems.org"
 
 #gem 'jekyll-include-cache'
 #gem "minimal-mistakes-jekyll"
-
+gem "minimal-mistakes-jekyll", "~> 4.26.2"
 gem 'webrick'
 gem "github-pages", group: :jekyll_plugins
 gem "jekyll-include-cache", group: :jekyll_plugins
