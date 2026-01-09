@@ -135,7 +135,11 @@ body.dark-mode .masthead {
     }
 
     body.dark-mode .sidebar {
-        background-color: #1a1a2e;
+        background-color: transparent;
+    }
+
+    body.dark-mode .author__urls.social-icons {
+    box-shadow: none !important;
     }
 
     .header-link {
@@ -157,6 +161,91 @@ body.dark-mode .masthead {
     .greedy-nav .search__toggle {
     display: none !important;
     }
+
+    .sidebar.scrolled .author__content {
+  margin-top: 30px;  /* 调整这个值 */
+  transition: margin-top 0.4s ease;
+}
+
+    #custom-dropdown {
+    display: none;
+    position: fixed;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 9999;
+    min-width: 200px;
+    
+    /* 新增动画 */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    #custom-dropdown.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #hamburger-btn {
+      cursor: pointer;
+    }
+
+    #hamburger-btn i {
+      display: inline-block;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+
+    #hamburger-btn.active i {
+      transform: rotate(180deg);
+    }
+
+
+    .sidebar .author__avatar {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.4s ease, opacity 0.4s ease;
+}
+
+.sidebar .author__avatar > * {
+  overflow: hidden;
+}
+
+.sidebar.scrolled .author__avatar {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+
+/* Follow 按钮 - dark mode */
+body.dark-mode .author__urls-wrapper button,
+body.dark-mode .author__urls-wrapper .btn {
+  background-color: #333;
+  color: #eaeaea;
+  border-color: #555;
+}
+
+/* Follow 下拉菜单背景 */
+body.dark-mode .author__urls-wrapper .author__urls {
+  background-color: #1a1a2e;
+  border-color: #333;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Follow 下拉菜单中的链接 */
+body.dark-mode .author__urls-wrapper .author__urls a {
+  color: #eaeaea;
+}
+
+body.dark-mode .author__urls-wrapper .author__urls a:hover {
+  background-color: #333;
+}
+
+/* Follow 按钮字体 */
+.author__urls-wrapper button.btn--inverse {
+  font-family: Skia, Optima, Arial, sans-serif !important;
+  font-weight: 500;  /* 正常粗细 */
+}
 
 
 
@@ -237,17 +326,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 重新绑定主题切换按钮事件
-    const themeToggleInDropdown = dropdown.querySelector('#theme-toggle');
-    if (themeToggleInDropdown) {
-      themeToggleInDropdown.closest('a').addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        document.body.classList.toggle('dark-mode');
-        const isDark = document.body.classList.contains('dark-mode');
-        
-        document.querySelectorAll('#theme-toggle').forEach(function(btn) {
-          btn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        });
+const themeToggleInDropdown = dropdown.querySelector('#theme-toggle');
+if (themeToggleInDropdown) {
+  themeToggleInDropdown.closest('a').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    
+    document.querySelectorAll('#theme-toggle').forEach(function(btn) {
+      btn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+    
+    // 关闭下拉菜单并变回汉堡按钮
+    dropdown.classList.remove('show');
+    const hamburger = document.getElementById('hamburger-btn');
+    if (hamburger) {
+      hamburger.classList.remove('active');
+      hamburger.querySelector('i').classList.replace('fa-times', 'fa-bars');
+    }
+    setTimeout(function() {
+      dropdown.style.display = 'none';
+    }, 200);
       });
     }
   }
@@ -276,6 +376,21 @@ if (nav) {
   hamburger.addEventListener('click', function(e) {
   e.preventDefault();
   e.stopPropagation();
+  
+  if (dropdown.classList.contains('show')) {
+    dropdown.classList.remove('show');
+    hamburger.classList.remove('active'); 
+    hamburger.querySelector('i').classList.replace('fa-times', 'fa-bars');   // 变回汉堡
+    setTimeout(() => dropdown.style.display = 'none', 200);
+    return;
+  }
+
+  if (dropdown.style.display === 'block' && dropdown.style.visibility === 'visible') {
+    dropdown.style.display = 'none';
+    hamburger.classList.remove('active'); 
+    hamburger.querySelector('i').classList.replace('fa-times', 'fa-bars');   // 变回汉堡
+    return;
+  }
   
   updateDropdown();
   
@@ -313,27 +428,40 @@ if (nav) {
   
   // 显示
   dropdown.style.visibility = 'visible';
-});
+  setTimeout(() => dropdown.classList.add('show'), 10);
+  hamburger.classList.add('active'); 
+  hamburger.querySelector('i').classList.replace('fa-bars', 'fa-times');  // 变成叉号
+  });
 }
 
   // 点击其他地方关闭
   document.addEventListener('click', function(e) {
     const hamburger = document.getElementById('hamburger-btn');
     if (hamburger && !hamburger.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.style.display = 'none';
+      dropdown.classList.remove('show');
+      hamburger.classList.remove('active'); 
+      hamburger.querySelector('i').classList.replace('fa-times', 'fa-bars');   // 变回汉堡
+      setTimeout(() => dropdown.style.display = 'none', 200);
     }
   });
 
   // 点击菜单项后关闭
-  dropdown.addEventListener('click', function(e) {
-    if (e.target.tagName === 'A') {
-      pauseUpdate = true;
-      setTimeout(function() {
-        dropdown.style.display = 'none';
-        pauseUpdate = false;
-      }, 100);
+dropdown.addEventListener('click', function(e) {
+  if (e.target.tagName === 'A') {
+
+    pauseUpdate = true;
+    dropdown.classList.remove('show');
+    const hamburger = document.getElementById('hamburger-btn');  // 重新获取！
+    if (hamburger) {
+      hamburger.classList.remove('active'); 
+      hamburger.querySelector('i').classList.replace('fa-times', 'fa-bars');   // 变回汉堡
     }
-  });
+    setTimeout(function() {
+      dropdown.style.display = 'none';
+      pauseUpdate = false;
+    }, 200);
+  }
+});
 });
 </script>
 
@@ -408,30 +536,165 @@ if (nav) {
   }
 
   /* 手机端下拉菜单居中 */
-  @media (max-width: 768px) {
-    #custom-dropdown {
-      width: 90%;
-      left: 5% !important;
-      right: 5% !important;
-    }
-
-    #fun-facts + table tr {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    #fun-facts + table td {
-        width: 100% !important;
-        display: block;
-        text-align: center;
-    }
-    
-    /* 列表保持左对齐 */
-    #fun-facts + table ul {
-        text-align: left;
-        display: inline-block;
-    }
+  @media (max-width: 1023px) {
+    /* 删除 Follow 下拉菜单的小尖尖 */
+  .author__urls-wrapper .author__urls::before,
+  .author__urls-wrapper .author__urls::after {
+    display: none !important;
   }
+
+  /* Follow 下拉菜单 - 强制覆盖主题的 display: none */
+  .author__urls-wrapper .author__urls {
+    display: block !important;  /* 关键：强制 block */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Follow 下拉菜单 - 显示状态 */
+  .author__urls-wrapper .author__urls.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Dark mode 下的阴影 */
+  body.dark-mode .author__urls-wrapper .author__urls {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+
+  .sidebar,
+  .sidebar.sticky {
+    background-color: transparent !important;
+  }
+  .sidebar .author__avatar a,
+  .sidebar .author__name a {
+    pointer-events: none !important;
+    cursor: default !important;
+  }
+
+  #open-source-projects,
+  #latest-news,
+  #fun-facts,
+  #visitors {
+      padding-top: 60px;
+      margin-top: -60px;
+  }
+
+      #about, #news {
+          padding-top: 60px;
+          border-bottom: none !important;
+          margin-top: -20px;
+          margin-bottom: -10px !important;
+          }
+
+  /* ========== Sidebar 容器修复 ========== */
+  body.dark-mode .page__content {
+    background-color: transparent !important;
+  }
+
+  .sidebar.sticky {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Fun Facts 表格布局 */
+  #fun-facts + table tr {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #fun-facts + table td {
+    width: 100% !important;
+    display: block;
+    text-align: center;
+  }
+  
+  #fun-facts + table ul {
+    text-align: left;
+    display: inline-block;
+  }
+
+  /* ========== 侧边栏横向布局 ========== */
+  .sidebar .h-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* 头像 - 左边 */
+  .sidebar .author__avatar {
+    width: max(75px, 10%);
+    flex-shrink: 0;
+    margin: 0;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .sidebar .author__avatar a {
+    display: block;
+  }
+
+  .sidebar .author__avatar img.u-photo {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    max-width: none !important;
+    max-height: none !important;
+    padding: 5px !important;
+    border: 1px solid rgb(207, 212, 211) !important;
+    border-radius: 50% !important;
+    box-sizing: border-box;
+  }
+
+  body.dark-mode .sidebar .author__avatar img.u-photo {
+    border-color: #555 !important;
+  }
+
+
+  /* 文字介绍 - 中间 */
+  .sidebar .author__content {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* 去掉 bio 下面的空行 */
+  .sidebar .author__bio {
+    height: auto !important;
+  }
+
+  .sidebar .author__bio p {
+    margin: 0 !important;
+  }
+
+  /* Follow 按钮 - 右边 */
+  .sidebar .author__urls-wrapper {
+    flex-shrink: 0;
+  }
+
+  /* 取消手机端头像滚动隐藏效果 */
+  .sidebar.scrolled .author__avatar {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+}
+
+  
+  
 
 
 
@@ -445,6 +708,87 @@ if (nav) {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  function initFollowMenu() {
+    const followBtn = document.querySelector('.author__urls-wrapper button');
+    const followMenu = document.querySelector('.author__urls-wrapper .author__urls');
+    
+    if (followBtn && followMenu) {
+      followMenu.classList.remove('show', 'is--visible', 'open');
+      followBtn.classList.remove('open');
+      
+      followBtn.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        followMenu.classList.toggle('show');
+        return false;
+      };
+    }
+  }
+  
+  function resetAllState() {
+    const followMenu = document.querySelector('.author__urls-wrapper .author__urls');
+    const followBtn = document.querySelector('.author__urls-wrapper button');
+    
+    if (followMenu) {
+      followMenu.classList.remove('show', 'is--visible', 'open');
+    }
+    if (followBtn) {
+      followBtn.classList.remove('open');
+    }
+    
+    document.body.click();
+  }
+  
+  setTimeout(initFollowMenu, 100);
+  
+  window.addEventListener('focus', function() {
+    resetAllState();
+    setTimeout(initFollowMenu, 50);
+  });
+  
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+      resetAllState();
+      setTimeout(initFollowMenu, 50);
+    }
+  });
+  
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+      resetAllState();
+      setTimeout(initFollowMenu, 50);
+    }
+  });
+  
+  document.addEventListener('click', function(e) {
+    const followBtn = document.querySelector('.author__urls-wrapper button');
+    const followMenu = document.querySelector('.author__urls-wrapper .author__urls');
+    if (followBtn && followMenu && !followBtn.contains(e.target) && !followMenu.contains(e.target)) {
+      followMenu.classList.remove('show');
+    }
+  });
+
+  window.addEventListener('resize', function() {
+    const followMenu = document.querySelector('.author__urls-wrapper .author__urls');
+    if (followMenu) {
+      followMenu.classList.remove('show');
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('.author__urls a');
+    if (link) {
+      const followMenu = document.querySelector('.author__urls-wrapper .author__urls');
+      if (followMenu) {
+        setTimeout(function() {
+          followMenu.classList.remove('show');
+        }, 50);
+      }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
   // 侧边栏链接
   document.querySelectorAll('.author__urls a').forEach(function(link) {
     const href = link.getAttribute('href');
@@ -452,7 +796,19 @@ document.addEventListener('DOMContentLoaded', function() {
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener noreferrer');
     }
-  });
+  });  // ← forEach 在这里结束
+
+  // sidebar 滚动监听放在外面
+  window.addEventListener('scroll', function() {
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebar) {
+    if (window.scrollY > 0) {
+      sidebar.classList.add('scrolled');
+    } else {
+      sidebar.classList.remove('scrolled');
+    }
+  }
+});
 
   // 页脚链接
   document.querySelectorAll('.page__footer a').forEach(function(link) {
