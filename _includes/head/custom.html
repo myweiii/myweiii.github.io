@@ -970,12 +970,14 @@ if (themeBtn) {
   /* ============================
      访客地图
      ============================ */
-  const lightMap = "https://mapmyvisitors.com/map.js?cl=62dfcb&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb";
-  const darkMap = "https://mapmyvisitors.com/map.js?cl=eaeaea&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=1a1a2e&cmo=4fc3f7&cmn=ffb347";
+  /* const lightMap = "https://mapmyvisitors.com/map.js?cl=62dfcb&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb";
+  const darkMap = "https://mapmyvisitors.com/map.js?cl=eaeaea&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=1a1a2e&cmo=4fc3f7&cmn=ffb347";*/
+  const lightMap = "//www.clustrmaps.com/map_v2.js?d=z6UGnvXgVykEbIDvqchfO0sNV0WVoRrgFoBz9kC31C8&cl=62dfcb&w=a&t=tt&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb";
+  const darkMap = "//www.clustrmaps.com/map_v2.js?d=z6UGnvXgVykEbIDvqchfO0sNV0WVoRrgFoBz9kC31C8&cl=eaeaea&w=a&t=tt&co=1a1a2e&cmo=4fc3f7&cmn=ffb347&ct=eaeaea";
   let resizeTimeout;
 
   function loadMap() {
-    const container = document.getElementById('mapmyvisitors-container');
+    const container = document.getElementById('clustrmaps-container');
     if (!container) return;
     
     const isDark = document.body.classList.contains('dark-mode');
@@ -991,7 +993,7 @@ if (themeBtn) {
   loadMap();
 
   // 地图链接点击
-  const mapContainer = document.getElementById('mapmyvisitors-container');
+  const mapContainer = document.getElementById('clustrmaps-container');
   if (mapContainer) {
     mapContainer.addEventListener('click', function(e) {
       const link = e.target.closest('a');
