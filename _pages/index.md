@@ -140,7 +140,7 @@ Hi there👋! My name is Mingyang Wei and I'm currently a research assistant at 
 
 
 <!-- Visitors -->
-<script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=z6UGnvXgVykEbIDvqchfO0sNV0WVoRrgFoBz9kC31C8&cl=62dfcb&w=a&t=tt&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb"></script>
+
 <h2 class="title-font" id="visitors"><a href="#visitors" style="text-decoration: none; color: inherit; font-size: 0.9em;">Visitors</a></h2>
 <div class="map-wrapper">
   <div id="clustrmaps-container"></div>
