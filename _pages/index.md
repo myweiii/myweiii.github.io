@@ -78,7 +78,7 @@ Hi there👋! My name is Mingyang Wei and I'm currently a research assistant at 
 <h2 class="title-font" id="fun-facts"><a href="#fun-facts" style="text-decoration: none; color: inherit; font-size: 0.9em;">Fun Facts</a></h2>
 <table style="border: none; border-collapse: collapse;">
   <tr style="border: none;">
-  <td style="border: none; padding: 10px; vertical-align: middle;">
+  <td style="border: none; padding: 10px; vertical-align: middle;text-align:center;">
     <a><b class="body-font" style="font-size: 1.2em;">🎧 Recently On Repeat</b></a>
     <br>
   </td>
@@ -92,15 +92,15 @@ Hi there👋! My name is Mingyang Wei and I'm currently a research assistant at 
 
 
   <tr style="border: none;">
-  <td style="border: none; padding: 10px; vertical-align: middle;">
+  <td style="border: none; padding: 10px; vertical-align: middle;text-align:center;">
     <a>
       <b class="body-font" style="font-size: 1.2em;">🎵 K-pop Lover</b> 
     </a>
-    <br>
+    <!-- <br>
     <span class="title-font">Recent Favorite: STAYC</span>
     <br>
     <span class="news-font">Songs: STAYC - RUN2U, GPT</span>
-    <br>
+    <br> -->
   </td>
   <td style="border: none; padding: 10px; vertical-align: middle;">
     <iframe class="spotify-embed" style="border-radius:12px; transform-origin: top left;" src="https://open.spotify.com/embed/track/3gFcGnU4kTdMYLXDjH1TK8" width="300" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
