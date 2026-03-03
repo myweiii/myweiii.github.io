@@ -972,11 +972,33 @@ if (themeBtn) {
      ============================ */
   /* const lightMap = "https://mapmyvisitors.com/map.js?cl=62dfcb&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb";
   const darkMap = "https://mapmyvisitors.com/map.js?cl=eaeaea&w=a&t=tt&d=aFHblOyhRqrPEOjLMyGLqfSPaAmR560E6X2mqPT4da0&co=1a1a2e&cmo=4fc3f7&cmn=ffb347";*/
-  const lightMap = "//www.clustrmaps.com/map_v2.js?d=z6UGnvXgVykEbIDvqchfO0sNV0WVoRrgFoBz9kC31C8&cl=62dfcb&w=a&t=tt&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb";
-  const darkMap = "//www.clustrmaps.com/map_v2.js?d=z6UGnvXgVykEbIDvqchfO0sNV0WVoRrgFoBz9kC31C8&cl=eaeaea&w=a&t=tt&co=1a1a2e&cmo=4fc3f7&cmn=ffb347&ct=eaeaea";
+  const lightMap = "//www.clustrmaps.com/map_v2.png?d=z6UGnvXgVykEbIDvqchfO0sNV0WVoRrgFoBz9kC31C8&cl=62dfcb&w=a&t=tt&co=f3f6f6&cmo=2b7a78&cmn=ffb347&ct=62dfcb";
+  const darkMap = "//www.clustrmaps.com/map_v2.png?d=z6UGnvXgVykEbIDvqchfO0sNV0WVoRrgFoBz9kC31C8&cl=eaeaea&w=a&t=tt&co=1a1a2e&cmo=4fc3f7&cmn=ffb347&ct=eaeaea";
   let resizeTimeout;
 
   function loadMap() {
+  const container = document.getElementById('clustrmaps-container');
+  if (!container) return;
+
+  const isDark = document.body.classList.contains('dark-mode');
+  container.innerHTML = '';
+
+  const link = document.createElement('a');
+  link.href = 'https://clustrmaps.com/site/1c9cm';
+  link.title = 'ClustrMaps';
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+
+  const img = document.createElement('img');
+  img.src = isDark ? darkMap : lightMap;
+  img.alt = 'ClustrMaps';
+  img.style.width = '100%';
+
+  link.appendChild(img);
+  container.appendChild(link);
+  }
+
+  /*function loadMap() {
     const container = document.getElementById('clustrmaps-container');
     if (!container) return;
     
@@ -988,7 +1010,7 @@ if (themeBtn) {
     script.id = 'mapmyvisitors';
     script.src = isDark ? darkMap : lightMap;
     container.appendChild(script);
-  }
+  }*/
 
   loadMap();
 
